@@ -1,4 +1,4 @@
-package edu.ehu.galan.cvalue;
+package edu.ehu.galan.rake;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
