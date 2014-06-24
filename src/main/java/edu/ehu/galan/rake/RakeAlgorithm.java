@@ -290,24 +290,7 @@ public class RakeAlgorithm extends AbstractAlgorithm {
         this.doc = doc;
     }
 
-    /**
-     *
-     * @param args
-     */
-//    public static void main(String[] args) {
-//
-//        RakeAlgorithm ex = new RakeAlgorithm();
-//        ex.loadStopWordsList("resources/lite/stopWordLists/RakeStopLists/SmartStopListEn");
-//        ex.loadPunctStopWord("resources/lite/stopWordLists/RakeStopLists/RakePunctDefaultStopList");
-//        PlainTextDocumentReaderLBJEn parser = new PlainTextDocumentReaderLBJEn();
-//        parser.readSource("testCorpus/textAstronomy");
-//        Document doc = new Document("", "pol");
-//        doc.setSentenceList(parser.getSentenceList());
-//        ex.init(doc, "");
-//      
-//        ex.runAlgorithm();
-
-//    }
+ 
 
     /**
      *
