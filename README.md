@@ -1,29 +1,20 @@
-CValue-TermExtraction
+RAKE-Java
 =====================
 
-A free Java implementation of the C-Value algorithm based on this paper:
+A Java implementation of the Rapid Automatic Keyword Extraction (RAKE) algorithm as described in: Rose, S., Engel, D., Cramer, N., & Cowley, W. (2010). Automatic Keyword Extraction from Individual Documents. In M. W. Berry & J. Kogan (Eds.), Text Mining: Theory and Applications: John Wiley & Sons.
 
-http://personalpages.manchester.ac.uk/staff/sophia.ananiadou/ijodl2000.pdf
+The source code is released under the GPL V2 License.
 
-The CValue is an algorithm for keyphrase extraction that has good results without any trainning combining statistical measures with 
-POS information. 
-
-It supports English using Penn Treebank POS Tags for english and Spanish using EAGLES tag set.
-
-This implementation requires a POS tagger to be used in order to work. For example The Illinois POS tagger could be used for English. 
+This implementation requires a POS tagger to be used in order to work. For example The Illinois POS tagger could be used for English.
 
 http://cogcomp.cs.illinois.edu/page/software_view/POS
 
-For Spanish it has been tested Freeling. 
 
-http://nlp.lsi.upc.edu/freeling/
-
-The implementation has been tested with English and works well, for documents that contains a lot of noise (like the extracted via OCR recognition) there are some fixes but the Filters for english should change to use Regular Expressions like the Spanish one in order to avoid problems with the Java Stack (although 26,000 papers have been tested with the current implementation). 
+The implementation is in beta state 
 
 TODO: 
 
-     - Change the English filters. 
-     - Implement the NC-Value measure (will require a corpus)
+     - More testing 
 
 
 Then an example parser for english that will provide the required data (using Illinois POS Tagger)
@@ -69,7 +60,7 @@ Then an example parser for english that will provide the required data (using Il
      
 ```
 
-Then The CValue can be processed then.....
+Then RAKE can be processed then.....
 
 
 ```java
@@ -77,11 +68,15 @@ Then The CValue can be processed then.....
     Document doc=new Document(full_path,name);
     doc.setSentenceList(sentences);
     doc.setTokenList(tokenized_sentences); 
-    CValueAlgortithm cvalue=new CValueAlgortithm();
-    cvalue.init(doc); // initializes the algorithm for processing the desired document. 
-    cvalue.addNewProcessingFilter(use_one_of_the_provides); //for example the AdjNounFilter
-    cvalue.runAlgorithm(); //process the CValue algorithm with the provided filters
-    doc.getTermList(); //get the results
+    RakeAlgorithm ex = new RakeAlgorithm();
+    ex.loadStopWordsList("resources/lite/stopWordLists/RakeStopLists/SmartStopListEn");
+    ex.loadPunctStopWord("resources/lite/stopWordLists/RakeStopLists/RakePunctDefaultStopList");
+    PlainTextDocumentReaderLBJEn parser = new PlainTextDocumentReaderLBJEn();
+    parser.readSource("testCorpus/textAstronomy");
+    Document doc = new Document("full_path", "name");
+    ex.init(doc);
+    ex.runAlgorithm();
+    doc.getTermList();
 ```
 
 
