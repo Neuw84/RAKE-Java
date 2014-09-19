@@ -1,15 +1,22 @@
 RAKE-Java
 =====================
 
-A Java 8 (sorry, but you will need to upgrade your JDK) implementation of the Rapid Automatic Keyword Extraction (RAKE) algorithm as described in: Rose, S., Engel, D., Cramer, N., & Cowley, W. (2010). Automatic Keyword Extraction from Individual Documents. In M. W. Berry & J. Kogan (Eds.), Text Mining: Theory and Applications: John Wiley & Sons.
+A Java 8 implementation of the Rapid Automatic Keyword Extraction (RAKE) algorithm as described in: Rose, S., Engel, D., Cramer, N., & Cowley, W. (2010). Automatic Keyword Extraction from Individual Documents. In M. W. Berry & J. Kogan (Eds.), Text Mining: Theory and Applications: John Wiley & Sons.
 
 The implementation is based on the python one from https://github.com/aneesha/RAKE (however some changes have been made)
-The source code is released under the GPL V2 License.
+The source code is released under the GPL V3License. 
 
 This implementation requires a POS tagger to be used in order to work. For example The Illinois POS tagger could be used for English.
 
 http://cogcomp.cs.illinois.edu/page/software_view/POS
 
+For Spanish or other languages: 
+
+FreeLing --> http://nlp.lsi.upc.edu/freeling/ 
+
+or Standford Pos tagger --> http://nlp.stanford.edu/software/tagger.shtml
+
+could be used as tagger.
 
 The implementation is in beta state 
 
