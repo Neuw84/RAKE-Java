@@ -50,7 +50,7 @@ import org.slf4j.LoggerFactory;
  * python script provided a good stopword list with a punctuation list
  *
  * The numbers have been taken into account using JATE method. The algorithm
- * expects that the puncuation marks are separated within a whitespace. 
+ * expects that the puntuaction marks are separated within a whitespace. 
  * " The red table , that is in front of you , is mine . "
  * To achieve this you should use a parser like OpenNLP, Illinois POS Tagger, 
  * Freeling parsers etc.
