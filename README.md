@@ -6,7 +6,18 @@ A Java 8 implementation of the Rapid Automatic Keyword Extraction (RAKE) algorit
 The implementation is based on the python one from https://github.com/aneesha/RAKE (however some changes have been made)
 The source code is released under the GPL V3License. 
 
+Add this repository to your POM.XML whether you want to use it with maven
+````xml 
+ <repository>
+        <id>galan-maven-repo</id>
+        <name>galan-maven-repo-releases</name>
+        <url>http://galan.ehu.es/artifactory/ext-release-local</url>
+ </repository>
+
+````
+
 This implementation requires a POS tagger to be used in order to work. For example The Illinois POS tagger could be used for English.
+
 
 http://cogcomp.cs.illinois.edu/page/software_view/POS
 
