@@ -45,7 +45,7 @@
                             <publisher>
                                 <contextUrl>http://sips72.si.ehu.es:8080/artifactory/</contextUrl>
                                 <username>admin</username>
-                                <password>{DESede}6FmOoIJyJ0Y=</password>
+                                <password></password>
                                 <repoKey>ext-release-local</repoKey>
                                 <snapshotRepoKey>ext-snapshots-local</snapshotRepoKey>
                             </publisher>
