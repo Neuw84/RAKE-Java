@@ -18,8 +18,7 @@
     </pluginRepositories>
     <name>RAKE</name>
     <url>http://maven.apache.org</url>
-    <build>
-        
+    <build>        
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

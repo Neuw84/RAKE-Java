@@ -29,12 +29,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
+import static java.util.stream.Collectors.toList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,10 +62,11 @@ import org.slf4j.LoggerFactory;
  * 
  * @author Angel Conde Manjon
  */
+
 public class RakeAlgorithm extends AbstractAlgorithm {
 
     private transient Document doc = null;
-    private final transient List<Term> termList; //gson 
+    private final transient List<Term> termList; 
     private List<String> stopWordList;
     transient private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private List<Pattern> regexList = null;
@@ -137,8 +139,8 @@ public class RakeAlgorithm extends AbstractAlgorithm {
         for (String string : pStopWords) {
             sb.append("\\b").append(string.trim()).append("\\b").append("|");
         }
-        String pattern = sb.substring(0, sb.length() - 1).toString();
-        Pattern pat = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
+        String pattern = sb.substring(0, sb.length() - 1);
+        Pattern pat = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE| Pattern.UNICODE_CASE);
         return pat;
     }
 
@@ -179,8 +181,8 @@ public class RakeAlgorithm extends AbstractAlgorithm {
         for (String string : pPunctStop) {
             sb.append("\\").append(string.trim()).append("|");
         }
-        String pattern = sb.substring(0, sb.length() - 1).toString();
-        Pattern pat = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
+        String pattern = sb.substring(0, sb.length() - 1);
+        Pattern pat = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE |Pattern.UNICODE_CASE);
         return pat;
     }
 
@@ -251,7 +253,6 @@ public class RakeAlgorithm extends AbstractAlgorithm {
                     }
                 }
             }
-
             for (Map.Entry<String, Integer> entry : worddegree.entrySet()) {
                 entry.setValue(entry.getValue() + wordfreq.get(entry.getKey()));
             }
@@ -259,7 +260,6 @@ public class RakeAlgorithm extends AbstractAlgorithm {
             for (Map.Entry<String, Integer> entry : wordfreq.entrySet()) {
                 wordscore.put(entry.getKey(), worddegree.get(entry.getKey()) / (wordfreq.get(entry.getKey()) * 1.0f));
             }
-
             for (String phrase : candidates) {
                 String[] words = phrase.split("\\s+");
                 float score = 0.0f;
@@ -268,8 +268,8 @@ public class RakeAlgorithm extends AbstractAlgorithm {
                 }
                 termLi.add(new Term(phrase, score));
             }
-            List<Term> orderedList = termLi.parallelStream().sorted((o1, o2) -> o1.getScore() > o2.getScore() ? -1 : o1.getScore() == o2.getScore() ? 0 : 1).distinct().collect(Collectors.toList());
-            
+            Comparator<? super Term> sorter = (o1, o2) -> o1.getScore() > o2.getScore() ? -1 : o1.getScore() == o2.getScore() ? 0 : 1;
+            List<Term> orderedList = termLi.parallelStream().sorted(sorter).distinct().collect(toList());
             doc.setTermList(orderedList);
             
         }
@@ -314,7 +314,9 @@ public class RakeAlgorithm extends AbstractAlgorithm {
 
      private  boolean containsDigit(String string) {
 		for (char c : string.toCharArray()) {
-			if (Character.isDigit(c)) return true;
+			if (Character.isDigit(c)) {
+                            return true;
+                        }
 		}
 		return false;
 	}
