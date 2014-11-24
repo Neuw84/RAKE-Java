@@ -27,7 +27,6 @@ FreeLing --> http://nlp.lsi.upc.edu/freeling/
 
 or Standford Pos tagger --> http://nlp.stanford.edu/software/tagger.shtml
 
-could be used as tagger.
 
 The implementation is in beta state 
 
